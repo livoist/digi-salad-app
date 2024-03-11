@@ -360,6 +360,10 @@ header {
   .btn-startProject {
     display: none;
   }
+
+  .highlightText.intro:after {
+    bottom: 10px;
+  }
 }
 
 </style>

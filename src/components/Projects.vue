@@ -277,6 +277,7 @@ const updateLink = async () => {
 @media (max-width: 525px) {
   #projects {
     border-radius: 0;
+    margin-bottom: 0;
   }
 
   .slideContainer {
@@ -291,6 +292,10 @@ const updateLink = async () => {
   .switch svg {
     width: 8px;
     height: 24px;
+  }
+
+  .highlightText.projects:after {
+    bottom: 6px;
   }
 }
 
