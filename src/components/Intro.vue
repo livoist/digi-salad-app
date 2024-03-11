@@ -347,6 +347,10 @@ header {
 }
 
 @media (max-width: 700px) {
+  #intro {
+    border-radius: 0;
+  }
+
   .slogan {
     font-size: 20px;
     line-height: 2;

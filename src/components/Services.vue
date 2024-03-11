@@ -350,7 +350,7 @@ const handleImgName = (name: string) => new URL(`../assets/servicesIcon/${name.t
   .awardsBlock {
     flex-direction: column;
     width: 75%;
-    border-radius: 0 0 40px 40px;
+    border-radius: 0;
     position: relative;
     top: 0;
     right: 0;
@@ -393,7 +393,6 @@ const handleImgName = (name: string) => new URL(`../assets/servicesIcon/${name.t
 
   #services {
     padding-bottom: 0;
-    overflow: hidden;
   }
 
   .servicesContent {
@@ -409,7 +408,7 @@ const handleImgName = (name: string) => new URL(`../assets/servicesIcon/${name.t
   .founderBlock {
     position: relative;
     flex-direction: column;
-    border-radius: 0 0 40px 40px;
+    border-radius: 0;
     bottom: 0;
     margin-top: 50px;
     padding: 40px 20px;

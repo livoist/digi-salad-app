@@ -102,7 +102,7 @@ const updateLink = async () => {
 }
 
 .slideContainer {
-  max-width: 1024px;
+  max-width: 78%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -113,7 +113,8 @@ const updateLink = async () => {
   position: relative;
   display: flex;
   justify-content: center;
-  margin: 0 50px;
+  width: 100%;
+  margin: 0 20px;
 }
 
 .slide img {
@@ -172,11 +173,6 @@ const updateLink = async () => {
 .switch.prevent {
   background: gray;
   pointer-events: none;
-}
-
-.slide {
-  width: 100%;
-  margin: 0 auto;
 }
 
 .slideHint {
@@ -239,12 +235,15 @@ const updateLink = async () => {
 
   .slideContainer {
     max-width: 75%;
-    margin: 0 12px;
+    margin: 0;
   }
 
   .slide {
     flex-direction: column;
     align-items: center;
+    padding: 0 10px;
+    overflow: hidden;
+    margin: 0;
   }
 
   .slide img {
@@ -269,17 +268,21 @@ const updateLink = async () => {
     right: 0;
   }
 
-  .slide {
-    overflow: hidden;
-  }
-
   .highlightText.projects {
-    font-size: 24px;
+    font-size: 22px;
     letter-spacing: 1px;
   }
 }
 
 @media (max-width: 525px) {
+  #projects {
+    border-radius: 0;
+  }
+
+  .slideContainer {
+    max-width: 80%;
+  }
+
   .switch {
     width: 28px;
     height: 28px;
