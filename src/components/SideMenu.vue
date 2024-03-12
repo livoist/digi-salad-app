@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { ref } from 'vue'
+
 const props = defineProps({
   open: {
     type: Boolean,
@@ -7,6 +9,10 @@ const props = defineProps({
 });
 
 const emits = defineEmits(["open"]);
+
+const anTargetName = ref<string>("");
+const anActive = (e: any) => anTargetName.value = e.target.classList[e.target.classList.length - 1];
+const anStop = () => anTargetName.value = "";
 
 </script>
 
@@ -19,15 +25,15 @@ const emits = defineEmits(["open"]);
       <div class="sideMenu-bg"></div>
 
       <div class="menuGroup mt-60">
-        <div class="menuItem about mb-40">
-          <img src="../assets/side_menu/sideMenuIcon-about.png" alt="">
+        <div class="mb-40 menuItem about" @mouseenter="anActive" @mouseleave="anStop">
+          <img :class="{ 'bounce': anTargetName === 'about' }" src="../assets/side_menu/sideMenuIcon-about.png" alt="about">
           <div class="menuItemDes">
             <span>EMPOWERING BRANDS</span>
             <p class="fw-700">ABOUT US</p>
           </div>
         </div>
-        <div class="menuItem works">
-          <img src="../assets/side_menu/sideMenuIcon-works.png" alt="">
+        <div class="menuItem works" @mouseenter="anActive" @mouseleave="anStop">
+          <img :class="{ 'bounce': anTargetName === 'works' }" src="../assets/side_menu/sideMenuIcon-works.png" alt="works">
           <div class="menuItemDes works">
             <span>CASE STUDIES</span>
             <p class="fw-700">WORKS</p>
@@ -36,15 +42,15 @@ const emits = defineEmits(["open"]);
       </div>
 
       <div class="menuGroup mx-42">
-        <div class="menuItem careers mb-40">
-          <img src="../assets/side_menu/sideMenuIcon-careers.png" alt="">
+        <div class="mb-40 menuItem careers" @mouseenter="anActive" @mouseleave="anStop">
+          <img :class="{ 'bounce': anTargetName === 'careers' }" src="../assets/side_menu/sideMenuIcon-careers.png" alt="careers">
           <div class="menuItemDes">
             <span>BE COOL WITH US</span>
             <p class="fw-700">CAREERS</p>
           </div>
         </div>
-        <div class="menuItem insights">
-          <img src="../assets/side_menu/sideMenuIcon-insights.png" alt="">
+        <div class="menuItem insights" @mouseenter="anActive" @mouseleave="anStop">
+          <img :class="{ 'bounce': anTargetName === 'insights' }" src="../assets/side_menu/sideMenuIcon-insights.png" alt="insights">
           <div class="menuItemDes works">
             <span>OUR STRATEGIES</span>
             <p class="fw-700">INSIGHTS</p>
@@ -53,8 +59,8 @@ const emits = defineEmits(["open"]);
       </div>
 
       <div class="menuGroup mt-60">
-        <div class="menuItem services mb-40">
-          <img src="../assets/side_menu/sideMenuIcon-services.png" alt="">
+        <div class="mb-40 menuItem services" @mouseenter="anActive" @mouseleave="anStop">
+          <img :class="{ 'bounce': anTargetName === 'services' }" src="../assets/side_menu/sideMenuIcon-services.png" alt="services">
           <div class="menuItemDes">
             <span>AREAS OF EXPERTISE</span>
             <p class="fw-700">SERVICES</p>
@@ -297,6 +303,20 @@ const emits = defineEmits(["open"]);
   .menuItemDes span {
     font-size: 14px;
   }
+}
+
+@keyframes bounce {
+    20% { transform:translateY(0%); }
+    30% { transform:translateY(-20%); }
+    40% { transform:translateY(0%); }
+    45% { transform:translateY(-10%); }
+    47% { transform:translateY(0%); }
+    49% { transform:translateY(-5%); }
+    50% { transform:translateY(0); }
+}
+
+.bounce {
+  animation: bounce 2s both ease infinite;
 }
 
 </style>
