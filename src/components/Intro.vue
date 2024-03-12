@@ -30,7 +30,7 @@ onMounted(() => {
     aboutBlockPos.value = aboutBlock.getBoundingClientRect().top;
   }
 
-  showVideo()
+  showVideo();
 })
 
 watch(isOpenSideMenu, (val: boolean) => {
