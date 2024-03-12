@@ -305,18 +305,4 @@ const anStop = () => anTargetName.value = "";
   }
 }
 
-@keyframes bounce {
-    20% { transform:translateY(0%); }
-    30% { transform:translateY(-20%); }
-    40% { transform:translateY(0%); }
-    45% { transform:translateY(-10%); }
-    47% { transform:translateY(0%); }
-    49% { transform:translateY(-5%); }
-    50% { transform:translateY(0); }
-}
-
-.bounce {
-  animation: bounce 2s both ease infinite;
-}
-
 </style>

@@ -1,56 +1,13 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-
-interface ServicesContent {
-  name: string,
-  link: string
-}
-
-const servicesContent: ServicesContent[] = [
-  {
-    name: "UX DESIGN",
-    link: ""
-  },
-  {
-    name: "UI DESIGN",
-    link: ""
-  },
-  {
-    name: "WEBSITE DEVELOPMENT",
-    link: ""
-  },
-  {
-    name: "MOBILE APP DEVELOPMENT",
-    link: ""
-  },
-  {
-    name: "ECOMMERCE",
-    link: ""
-  },
-  {
-    name: "CUSTOMER LOYALTY",
-    link: ""
-  },
-  {
-    name: "DIGITAL TRANSFORMATION",
-    link: ""
-  },
-  {
-    name: "DIGITAL MARKETING",
-    link: ""
-  },
-  {
-    name: "BRANDING",
-    link: ""
-  }
-];
+import { servicesContent } from '../data';
+import { handleImgName, iconUrl } from '../utils';
 
 const viewTarget = ref<string>("");
 
 const viewMore = (e: any) => viewTarget.value = e.target.classList[2];
 const leaveView = () => viewTarget.value = "";
-const handleItemName = (val: string) => val.toLowerCase().split(" ").join("-");
-const handleImgName = (name: string) => new URL(`../assets/servicesIcon/${name.toLocaleLowerCase().split(" ").join("-")}.png`, import.meta.url).href;
+const url = (name: string) => iconUrl(handleImgName(name));
 
 </script>
 
@@ -111,7 +68,7 @@ const handleImgName = (name: string) => new URL(`../assets/servicesIcon/${name.t
     >
       <div class="iconGroup fw-700">
         <div class="icon">
-          <img :class="{ 'shake-an': viewTarget === handleItemName(item.name) }" :src="handleImgName(item.name)" alt="icon">
+          <img :class="{ 'shake-an': viewTarget === handleImgName(item.name) }" :src="url(item.name)" alt="icon">
         </div>
       <h4>{{ item.name }}</h4>
       </div>
@@ -123,7 +80,7 @@ const handleImgName = (name: string) => new URL(`../assets/servicesIcon/${name.t
         non pretium porta. Nam condimentum vitae<br />
         ligula vel ornare.
       </div>
-      <div class="btn fw-700" :class="handleItemName(item.name)" @mouseleave="leaveView" @mouseenter="viewMore">VIEW MORE</div>
+      <div class="btn fw-700" :class="handleImgName(item.name)" @mouseleave="leaveView" @mouseenter="viewMore">VIEW MORE</div>
     </div>
   </div>
 

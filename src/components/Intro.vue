@@ -1,9 +1,17 @@
 <script setup lang="ts">
 import { ref, onMounted, computed, watch } from 'vue';
 import SideMenu from '../components/SideMenu.vue';
-import { YoutubeBackground } from "vue3-youtube-background";
-import "vue3-youtube-background/dist/style.css";
-import { delay } from '../utils';
+import IntroBgVideo from './IntroBgVideo.vue';
+
+const props = defineProps({
+  videoActive: {
+    type: Boolean,
+    default: false
+  }
+})
+
+const bgVideoCom = ref<any>(null);
+const videoActive = computed(() => props.videoActive);
 
 const introHeight = ref<number>(0);
 const windowHeight = computed(() => introHeight.value === 0 ? '100vh' : `${ introHeight.value }px`);
@@ -12,12 +20,6 @@ const isOpenSideMenu = ref<boolean>(false);
 const updateOpen = (val: boolean) => isOpenSideMenu.value = val;
 
 let aboutBlockPos = ref<number>(0);
-const videoShow = ref<boolean>(false);
-
-const showVideo = async () => {
-  await delay(1500);
-  videoShow.value = true;
-}
 
 onMounted(() => {
   window.addEventListener("resize", (e: any) => {
@@ -29,14 +31,18 @@ onMounted(() => {
   if (aboutBlock !== null) {
     aboutBlockPos.value = aboutBlock.getBoundingClientRect().top;
   }
-
-  showVideo();
 })
 
 watch(isOpenSideMenu, (val: boolean) => {
   val ?
     document.body.style.overflow = 'hidden' :
     document.body.style.overflow = 'auto'
+})
+
+watch(videoActive, (val: boolean) => {
+  if (val) {
+    bgVideoCom.value = IntroBgVideo;
+  }
 })
 
 const scrollToAbout = () => {
@@ -59,7 +65,7 @@ const scrollToAbout = () => {
     </div>
   </header>
   
-  <div class="mask" :class="{ 'hidden': videoShow }"></div>
+  <div class="mask" :class="{ 'hidden': props.videoActive }"></div>
   
   <div class="content">
     <div class="decorator">
@@ -85,9 +91,12 @@ const scrollToAbout = () => {
     <p>TASTE US NOW!</p>
   </div>
 
-  <div class="introBackgroundVideo" :class="{ 'active': videoShow }">
+  <!-- <div class="introBackgroundVideo" :class="{ 'active': videoShow }">
     <youtube-background video-id="8_4JRK4QkqU" />
-  </div>
+  </div> -->
+
+  <component :is="bgVideoCom"></component>
+  
 </section>
 </template>
 
@@ -99,7 +108,7 @@ const scrollToAbout = () => {
   width: 100%;
   height: 150vh;
   z-index: -1;
-  opacity: 0;
+  opacity: 1;
   transition: 1s;
 }
 
@@ -366,4 +375,4 @@ header {
   }
 }
 
-</style>
+</style>./IntroBgVideo.vue
